@@ -60,12 +60,15 @@ namespace Datadog.Trace.ClrProfiler.AutoInstrumentation.AdoNet
                 scope.Span.ResourceName = commandText;
                 scope.Span.Type = SpanTypes.Sql;
 
-                // if the database command has parameters, adds them as tags
-                if (command is DbCommand { Parameters.Count: > 0 } dbCommand)
+                if (tracer.Settings.SQLParamObfuscationEnabled)
                 {
-                    foreach (DbParameter parameter in dbCommand.Parameters)
+                    // if the database command has parameters, adds them as tags
+                    if (command is DbCommand { Parameters.Count: > 0 } dbCommand)
                     {
-                        scope.Span.SetTag(parameter.ParameterName, parameter.Value?.ToString() ?? string.Empty);
+                        foreach (DbParameter parameter in dbCommand.Parameters)
+                        {
+                            scope.Span.SetTag(parameter.ParameterName, parameter.Value?.ToString() ?? string.Empty);
+                        }
                     }
                 }
 

@@ -155,6 +155,9 @@ namespace Datadog.Trace.Configuration
             TraceId128BitGenerationEnabled = settings.TraceId128BitGenerationEnabled;
             TraceId128BitLoggingEnabled = settings.TraceId128BitLoggingEnabled;
 
+            SQLParamObfuscationEnabled = settings.SQLParamObfuscationEnabled;
+            Console.WriteLine("SQLParamObfuscationEnabled[DD_SQL_PARAM_OBFUSCATION_ENABLED]:" + SQLParamObfuscationEnabled);
+
             static string? GetExplicitSettingOrTag(string? explicitSetting, IDictionary<string, string> globalTags, string tag)
             {
                 if (!string.IsNullOrWhiteSpace(explicitSetting))
@@ -514,6 +517,8 @@ namespace Datadog.Trace.Configuration
         /// Gets the AAS settings. Guaranteed not <c>null</c> when <see cref="IsRunningInAzureAppService"/> is not <c>null</c>
         /// </summary>
         internal ImmutableAzureAppServiceSettings? AzureAppServiceMetadata { get; }
+
+        internal bool SQLParamObfuscationEnabled { get; }
 
         /// <summary>
         /// Gets a value indicating whether to calculate the peer.service tag from predefined precursor attributes when using the v0 schema.

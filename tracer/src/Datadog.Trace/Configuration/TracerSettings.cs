@@ -368,6 +368,10 @@ namespace Datadog.Trace.Configuration
                                          .WithKeys(ConfigurationKeys.FeatureFlags.TraceId128BitLoggingEnabled)
                                          .AsBool(false);
 
+            SQLParamObfuscationEnabled = config
+                 .WithKeys(ConfigurationKeys.SQLParamObfuscationEnabled)
+                 .AsBool(false);
+
             // we "enrich" with these values which aren't _strictly_ configuration, but which we want to track as we tracked them in v1
             telemetry.Record(ConfigTelemetryData.NativeTracerVersion, Instrumentation.GetNativeTracerVersion(), recordValue: true, ConfigurationOrigins.Default);
             telemetry.Record(ConfigTelemetryData.FullTrustAppDomain, value: AppDomain.CurrentDomain.IsFullyTrusted, ConfigurationOrigins.Default);
@@ -831,6 +835,8 @@ namespace Datadog.Trace.Configuration
         /// even if we are not generating them.
         /// </summary>
         internal bool TraceId128BitLoggingEnabled { get; }
+
+        internal bool SQLParamObfuscationEnabled { get; }
 
         /// <summary>
         /// Gets the AAS settings

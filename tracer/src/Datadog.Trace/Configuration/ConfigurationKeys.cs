@@ -434,6 +434,8 @@ namespace Datadog.Trace.Configuration
         /// </summary>
         public const string RemoveClientServiceNamesEnabled = "DD_TRACE_REMOVE_INTEGRATION_SERVICE_NAMES_ENABLED";
 
+        public const string SQLParamObfuscationEnabled = "DD_SQL_PARAM_OBFUSCATION_ENABLED";
+
         /// <summary>
         /// String constants for CI Visibility configuration keys.
         /// </summary>

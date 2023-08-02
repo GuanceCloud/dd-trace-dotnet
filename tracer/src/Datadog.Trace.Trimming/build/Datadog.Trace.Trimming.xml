@@ -171,6 +171,8 @@
    <assembly fullname="System.Data.Common">
       <type fullname="System.Data.Common.DbCommand" />
       <type fullname="System.Data.Common.DbConnectionStringBuilder" />
+      <type fullname="System.Data.Common.DbParameter" />
+      <type fullname="System.Data.Common.DbParameterCollection" />
       <type fullname="System.Data.DataColumn" />
       <type fullname="System.Data.DataColumnCollection" />
       <type fullname="System.Data.DataRow" />
